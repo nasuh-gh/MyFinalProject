@@ -1,17 +1,17 @@
-﻿using Entities.Abstract;
+﻿using Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace DataAccess.Abstract
+namespace Core.DataAccess
 {
     //T ye filtre getirdik
     //generic consraint-generik kısıt-Buradaki T yi sınırlandıracağız.
     //class: demek T referans tip olur demek.
-    //virgülle birlikte T ya IEntity olabilir ya da IEntitiy den imlemente olan bir nesne olabilir
+    //virgülle birlikte T ya IEntity olabilir ya da IEntitiy den implemente olan bir nesne olabilir
     //new(): T new lenebilir olmalı demek. IEntity interface olduğu için new lenemez. T soyut bir nesne olmamalı
-    //DİKKAT: Syntax ın avantajlarını kullandık. IEntity ürüleri tek bir noktada bağlamamıza neden oldu. Sadece Ientity yazarak Category,Customer,Product u ifade edebiliyoruz.
+    //DİKKAT: Syntax ın avantajlarını kullandık. IEntity ürüleri tek bir noktada bağlamamıza neden oldu. Sadece IEntity yazarak Category,Customer,Product u ifade edebiliyoruz.
 
     public interface IEntityRepository<T> where T:class,IEntity,new()
     {
