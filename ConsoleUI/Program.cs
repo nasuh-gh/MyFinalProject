@@ -30,7 +30,7 @@ namespace ConsoleUI
             }
         }
 
-        private static void ProductTest()
+        private static void ProductTest()//Birim fiyatı 40 ie 100 arasındakileri listele
         {
             ProductManager productManager = new ProductManager(new EfProductDal());
 
@@ -40,6 +40,7 @@ namespace ConsoleUI
             }
         }
 
+        //Aynı anda ürün tablosundan ürün isimlerini ve kategori tablosundan o ürünlerin kategorileini listeler-Join işlemi yaptık
         private static void ProductTest2()
         {
             ProductManager productManager = new ProductManager(new EfProductDal());
