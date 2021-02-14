@@ -25,18 +25,47 @@ namespace WebAPI.Controllers
             _productService = productService;
         }
 
-        [HttpGet]
-        public List<Product> Get()
+        [HttpGet("getall")]
+        public IActionResult GetAll()
         {
             //Dependency chain-Bağımlılık zinciri
             //IProductService bir ProductManager e ihtiyaç duyuyor, ProductManager de bir EfProductDal a ihtiyaç duyuyor
-            //Alttaki satırda bağımlılık zinciri var-bunu düzeltmek için en yukarda constructor yaptık -injaction
+            //Alttaki satırda bağımlılık zinciri var-bunu düzeltmek için en yukarda constructor yaptık -injection
             //IProductService productService = new ProductManager(new EfProductDal());
             //Bu sayfa bizim API miz ve dal veya business somut sınıfını görmüyoruz.
             //ProductManager de de herhangi bir dal görmüyoruz soyut dışında
             //Şuan sistemde hiçbir katman diğerini new lemiyor veya somut sınıf üzerinden gitmiyoruz***
             var result = _productService.GetAll();
-            return result.Data;
+            if (result.Success)
+            {
+                //200 de OK ile
+                return Ok(result);
+            }
+            //400 de BadRequest
+            return BadRequest(result);
         }
+
+        [HttpGet("getbyid")]//isimlerle alyas vermek demek
+        public IActionResult GetById(int id)
+        {
+            var result = _productService.GetById(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpPost("add")]
+        public IActionResult Add(Product product)
+        {
+            var result = _productService.Add(product);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
     }
 }
