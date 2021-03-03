@@ -1,10 +1,13 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;//
 using Entities.Concrete;
 using Entities.DTOs;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,12 +25,8 @@ namespace Business.Concrete
 
         public IResult Add(Product product)
         {
-            //business codes-ürünü eklemeden önce kurallar varsa buraya yazılır ona göre ekleme yapar
-            if(product.ProductName.Length<2)
-            {
-                //magic strings-tırnak içi stringler demek
-                return new ErrorResult(Messages.ProductNameInvalid);
-            }
+            ValidationTool.Validate(new ProductValidator(), product);
+            
             _productDal.Add(product);//Ekleme yapan kod-diğerleri onay veya mesaj
 
             return new SuccessResult(Messages.ProductAdded);
