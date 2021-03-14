@@ -20,6 +20,7 @@ namespace Business.Abstract
         //IResult ı koyarak sadece işlem sonucu ve mesaj ekledik
         //Sonuç true ise ekler ve mesaj(isteğe bağlı), sonuç false ise eklemez ve mesaj(isteğe bağlı)-Data olmadığı için IResult
         IResult Add(Product product);
+        IResult Update(Product product);
 
     }
 }
