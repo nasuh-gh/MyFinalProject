@@ -45,7 +45,6 @@ namespace Business.Concrete
 
             return new SuccessResult(Messages.ProductAdded);
 
-            return new ErrorResult();
         }
 
         public IDataResult<List<Product>> GetAll()
